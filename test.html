@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="field">
+        <input type="text" id="imagedata" name="imagedata" class="input tips" style="width:25%; float:left;" data-toggle="hover" data-place="right" readonly="readonly" />
+        <input type="file" οnchange="selectImage(this);" id="image" name="image" class="button bg-blue margin-left" value="+ 浏览上传" style="float:left;">
+        <img id="imagedisplay" src="" class="img-news" alt="" style="margin-left:50px;" />
+    </div>
+</body>
+<script>
+    var image = '';
+
+    function selectImage(file) {
+        if (!file.files || !file.files[0]) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            // 将图片显示在id为imagedisplay的img
+            document.getElementById('imagedisplay').src = evt.target.result;
+            // 将图片的base64数据存在id为imagedata的一个文本框
+            document.getElementById('imagedata').value = evt.target.result.toString();
+            alert("evt.target.result");
+        }
+        reader.readAsDataURL(file.files[0]);
+
+    }
+</script>
+
+
+</html>
